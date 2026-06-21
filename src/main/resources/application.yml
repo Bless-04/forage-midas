@@ -3,6 +3,7 @@ general:
 
 server:
   port: ${SERVER_PORT:8081}
+
 spring:
   datasource:
     url: jdbc:h2:mem:midas;DB_CLOSE_DELAY=-1
@@ -16,3 +17,16 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  kafka:
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      group-id: midas-core
+      auto-offset-reset: earliest
+      properties:
+        spring.json.trusted.packages: com.jpmc.midascore.foundation
+
+logging:
+  level:
+    com.jpmc.midascore: DEBUG
