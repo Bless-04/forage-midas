@@ -23,7 +23,7 @@ spring:
     consumer:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       group-id: midas-core
-      auto-offset-reset: earliest
+      auto-offset-reset: earliest #Fixes the task2  not always displaying cus of race condition
       properties:
         spring.json.trusted.packages: com.jpmc.midascore.foundation
 
